@@ -32,4 +32,4 @@ KrishiMitraUI/
 │
 ├── index.html         # Main HTML file with all UI mockups
 ├── README.md          # Project documentation
-└── assets/            # (Optional) For future image/icon resources
+└── stack.html         # Technology Tools stack detailed info.
