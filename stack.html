@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agricultural AI Platform - Tech Stack</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+            color: white;
+        }
+
+        .header h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .tech-category {
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 15px;
+            padding: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tech-category:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            background: rgba(255, 255, 255, 0.25);
+        }
+
+        .tech-category::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: left 0.5s;
+        }
+
+        .tech-category:hover::before {
+            left: 100%;
+        }
+
+        .category-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .category-icon {
+            font-size: 2.5em;
+            margin-right: 15px;
+            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+        }
+
+        .category-title {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: white;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .tech-list {
+            list-style: none;
+        }
+
+        .tech-item {
+            background: rgba(255, 255, 255, 0.1);
+            margin: 10px 0;
+            padding: 15px;
+            border-radius: 10px;
+            border-left: 4px solid #4CAF50;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .tech-item:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateX(10px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .tech-name {
+            font-weight: bold;
+            color: white;
+            font-size: 1.1em;
+            margin-bottom: 5px;
+        }
+
+        .tech-description {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.9em;
+            line-height: 1.4;
+        }
+
+        .architecture-flow {
+            margin-top: 50px;
+            text-align: center;
+        }
+
+        .flow-title {
+            font-size: 2.5em;
+            color: white;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .flow-diagram {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .btn {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            padding: 14px 28px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        .btn:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px);
+        }
+
+        .flow-step {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 20px;
+            border-radius: 15px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            min-width: 200px;
+            text-align: center;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .flow-step:hover {
+            transform: scale(1.1);
+            background: rgba(255, 255, 255, 0.25);
+        }
+
+        .flow-step::after {
+            content: '→';
+            position: absolute;
+            right: -30px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 2em;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .flow-step:last-child::after {
+            display: none;
+        }
+
+        .step-icon {
+            font-size: 2em;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .step-title {
+            font-weight: bold;
+            color: white;
+            margin-bottom: 5px;
+        }
+
+        .step-desc {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.9em;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .floating {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @media (max-width: 768px) {
+            .tech-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .header h1 {
+                font-size: 2em;
+            }
+
+            .flow-diagram {
+                flex-direction: column;
+            }
+
+            .flow-step::after {
+                content: '↓';
+                right: 50%;
+                top: 100%;
+                transform: translateX(50%);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h1 class="floating">🌾 Agricultural AI Platform</h1>
+            <p>Complete Technology Stack for Smart Farming Solutions</p>
+            <br>
+            <h2>This is the Stack Page</h2>
+            <br>
+    <button class="btn" onclick="window.location.href='index.html'">Back to Main Page</button>
+        </div>
+
+        <div class="tech-grid">
+            <div class="tech-category">
+                <div class="category-header">
+                    <span class="category-icon">🤖</span>
+                    <h2 class="category-title">AI & Machine Learning</h2>
+                </div>
+                <ul class="tech-list">
+                    <li class="tech-item">
+                        <div class="tech-name">Google Gemini AI</div>
+                        <div class="tech-description">Advanced multimodal AI for crop disease detection, natural
+                            language processing, and intelligent recommendations</div>
+                    </li>
+                    <li class="tech-item">
+                        <div class="tech-name">Vertex AI</div>
+                        <div class="tech-description">Google Cloud's ML platform for model training, deployment, and
+                            management</div>
+                    </li>
+                    <li class="tech-item">
+                        <div class="tech-name">TensorFlow</div>
+                        <div class="tech-description">Open-source ML framework for custom model development and
+                            optimization</div>
+                    </li>
+                    <li class="tech-item">
+                        <div class="tech-name">Computer Vision API</div>
+                        <div class="tech-description">Image analysis for crop health assessment and disease
+                            identification</div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="tech-category">
+                <div class="category-header">
+                    <span class="category-icon">☁️</span>
+                    <h2 class="category-title">Cloud Infrastructure</h2>
+                </div>
+                <ul class="tech-list">
+                    <li class="tech-item">
+                        <div class="tech-name">Firebase</div>
+                        <div class="tech-description">Complete backend platform with real-time database, authentication,
+                            and hosting</div>
+                    </li>
+                    <li class="tech-item">
+                        <div class="tech-name">Google Cloud Platform</div>
+                        <div class="tech-description">Scalable cloud infrastructure for compute, storage, and networking
+                        </div>
+                    </li>
+                    <li class="tech-item">
+                        <div class="tech-name">Cloud Functions</div>
+                        <div class="tech-description">Serverless computing for event-driven backend operations</div>
+                    </li>
+                    <li class="tech-item">
+                        <div class="tech-name">Firestore</div>
+                        <div class="tech-description">NoSQL document database for real-time data synchronization</div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="tech-category">
+                <div class="category-header">
+                    <span class="category-icon">📱</span>
+                    <h2 class="category-title">Frontend & Mobile</h2>
+                </div>
+                <ul class="tech-list">
+                    <li class="tech-item">
+                        <div class="tech-name">React Native</div>
+                        <div class="tech-description">Cross-platform mobile app development for iOS and Android</div>
+                    </li>
+                    <li class="tech-item">
+                        <div class="tech-name">Flutter</div>
+                        <div class="tech-description">UI toolkit for building natively compiled applications</div>
+                    </li>
+                    <li class="tech-item">
+                        <div class="tech-name">Firebase Studio</div>
+                        <div class="tech-description">Drag-and-drop UI builder for rapid frontend development</div>
+                    </li>
+                    <li class="tech-item">
+                        <div class="tech-name">Progressive Web App</div>
+                        <div class="tech-description">Web-based app with native-like experience and offline capabilities
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="tech-category">
+                <div class="category-header">
+                    <span class="category-icon">🔗</span>
+                    <h2 class="category-title">APIs & Integration</h2>
+                </div>
+                <ul class="tech-list">
+                    <li class="tech-item">
+                        <div class="tech-name">Weather API</div>
+                        <div class="tech-description">Real-time weather data and 7-day forecasting integration</div>
+                    </li>
+                    <li class="tech-item">
+                        <div class="tech-name">Market Price API</div>
+                        <div class="tech-description">Live mandi prices and agricultural commodity data</div>
+                    </li>
+                    <li class="tech-item">
+                        <div class="tech-name">Google Maps API</div>
+                        <div class="tech-description">Location services, crop mapping, and geospatial analysis</div>
+                    </li>
+                    <li class="tech-item">
+                        <div class="tech-name">WhatsApp Business API</div>
+                        <div class="tech-description">Automated messaging and farmer communication platform</div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="tech-category">
+                <div class="category-header">
+                    <span class="category-icon">🎤</span>
+                    <h2 class="category-title">Voice & Language</h2>
+                </div>
+                <ul class="tech-list">
+                    <li class="tech-item">
+                        <div class="tech-name">Speech-to-Text API</div>
+                        <div class="tech-description">Multi-language voice recognition for farmer queries</div>
+                    </li>
+                    <li class="tech-item">
+                        <div class="tech-name">Text-to-Speech API</div>
+                        <div class="tech-description">Natural voice responses in local languages</div>
+                    </li>
+                    <li class="tech-item">
+                        <div class="tech-name">Translation API</div>
+                        <div class="tech-description">Real-time translation between Kannada, Hindi, and English</div>
+                    </li>
+                    <li class="tech-item">
+                        <div class="tech-name">Natural Language Processing</div>
+                        <div class="tech-description">Understanding and processing farmer queries in natural language
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="tech-category">
+                <div class="category-header">
+                    <span class="category-icon">🔒</span>
+                    <h2 class="category-title">Security & Analytics</h2>
+                </div>
+                <ul class="tech-list">
+                    <li class="tech-item">
+                        <div class="tech-name">Firebase Auth</div>
+                        <div class="tech-description">Secure user authentication and profile management</div>
+                    </li>
+                    <li class="tech-item">
+                        <div class="tech-name">Cloud Security</div>
+                        <div class="tech-description">End-to-end encryption and data protection</div>
+                    </li>
+                    <li class="tech-item">
+                        <div class="tech-name">Google Analytics</div>
+                        <div class="tech-description">User behavior tracking and app performance monitoring</div>
+                    </li>
+                    <li class="tech-item">
+                        <div class="tech-name">Crashlytics</div>
+                        <div class="tech-description">Real-time crash reporting and app stability monitoring</div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="architecture-flow">
+            <h2 class="flow-title">🏗️ System Architecture Flow</h2>
+            <div class="flow-diagram">
+                <div class="flow-step floating">
+                    <span class="step-icon">📱</span>
+                    <div class="step-title">Mobile App</div>
+                    <div class="step-desc">React Native/Flutter UI</div>
+                </div>
+                <div class="flow-step floating">
+                    <span class="step-icon">🔥</span>
+                    <div class="step-title">Firebase</div>
+                    <div class="step-desc">Backend Services</div>
+                </div>
+                <div class="flow-step floating">
+                    <span class="step-icon">🤖</span>
+                    <div class="step-title">Gemini AI</div>
+                    <div class="step-desc">Intelligence Layer</div>
+                </div>
+                <div class="flow-step floating">
+                    <span class="step-icon">☁️</span>
+                    <div class="step-title">GCP</div>
+                    <div class="step-desc">Cloud Infrastructure</div>
+                </div>
+                <div class="flow-step floating">
+                    <span class="step-icon">📊</span>
+                    <div class="step-title">Analytics</div>
+                    <div class="step-desc">Insights & Reporting</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Add interactive animations
+        document.addEventListener('DOMContentLoaded', function () {
+            const techItems = document.querySelectorAll('.tech-item');
+            const flowSteps = document.querySelectorAll('.flow-step');
+
+            // Stagger animation for tech items
+            techItems.forEach((item, index) => {
+                item.style.opacity = '0';
+                item.style.transform = 'translateY(20px)';
+                setTimeout(() => {
+                    item.style.transition = 'all 0.5s ease';
+                    item.style.opacity = '1';
+                    item.style.transform = 'translateY(0)';
+                }, index * 100);
+            });
+
+            // Add click interactions
+            techItems.forEach(item => {
+                item.addEventListener('click', function () {
+                    this.style.transform = 'scale(1.05)';
+                    setTimeout(() => {
+                        this.style.transform = 'scale(1)';
+                    }, 200);
+                });
+            });
+
+            // Flow step interactions
+            flowSteps.forEach(step => {
+                step.addEventListener('mouseenter', function () {
+                    this.style.background = 'rgba(255, 255, 255, 0.3)';
+                });
+
+                step.addEventListener('mouseleave', function () {
+                    this.style.background = 'rgba(255, 255, 255, 0.15)';
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>
